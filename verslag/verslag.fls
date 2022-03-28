@@ -73,6 +73,8 @@ INPUT sections/methodologie.tex
 INPUT sections/methodologie.tex
 INPUT sections/literatuuronderzoek.tex
 INPUT sections/literatuuronderzoek.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT sections/requirements.tex
 INPUT sections/requirements.tex
 INPUT sections/specificaties.tex
@@ -90,4 +92,5 @@ INPUT verslag.bbl
 INPUT verslag.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
