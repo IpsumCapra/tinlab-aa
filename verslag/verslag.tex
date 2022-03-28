@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{apacite}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[dutch]{babel}
+\usepackage{subfiles}
+\begin{document}
+\sffamily
+\begin{titlepage}
+  \centering
+    \vfill
+    {\bfseries\Huge
+      Verslag Eindopdracht Tinlab \\
+        \vskip2cm
+      }
+      {\bfseries\Large
+        Sam Cornelisse 0987282\\
+	Chiara Bakker 0993154\\
+	Rowdey Goos 0998898\\
+	Daniël van der Drift 0986788\\
+      }
+      {
+        \bfseries\normalsize
+        \vskip1cm
+        \today\\
+    }
+    \vfill
+    \vfill
+    \vfill
+\end{titlepage}
+\newpage
+\tableofcontents
+
+\newpage
+\section{Samenvatting}
+\subfile{sections/samenvatting}
+
+\section{Inleiding}
+\subfile{sections/inleiding}
+
+\section{Theoretisch Kader}
+\subfile{sections/theoretisch_kader}
+
+\section{Methodologie}
+\subfile{sections/methodologie}
+
+\section{Literatuuronderzoek}
+\subfile{sections/literatuuronderzoek}
+
+\section{Requirements}
+\subfile{sections/requirements}
+
+\section{Specificaties}
+\subfile{sections/specificaties}
+
+\section{Model}
+\subfile{sections/model}
+
+\section{Verifiëren}
+\subfile{sections/verifieren}
+
+\section{Conclusie}
+\subfile{sections/conclusie}
+
+\newpage
+\section{Bijlagen}
+\subfile{sections/bijlagen\newpage
+\bibliography{references}
+\bibliographystyle{apacite}
+\end{document}}
+
+\newpage
+\bibliography{references}
+\bibliographystyle{apacite}
+\end{document}
