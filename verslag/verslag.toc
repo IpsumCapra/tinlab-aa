@@ -4,20 +4,25 @@
 \contentsline {section}{\numberline {3}Theoretisch Kader}{2}%
 \contentsline {subsection}{\numberline {3.1}Begrippenlijst}{3}%
 \contentsline {section}{\numberline {4}Methodologie}{3}%
-\contentsline {section}{\numberline {5}Literatuuronderzoek}{3}%
-\contentsline {subsection}{\numberline {5.1}Wat is een sluis?}{3}%
-\contentsline {subsection}{\numberline {5.2}Hoe opereert een sluis?}{3}%
-\contentsline {subsection}{\numberline {5.3}Hoe wordt een sluis onderhouden?}{3}%
-\contentsline {subsection}{\numberline {5.4}Wat kan er fout gaan met een sluis?}{3}%
-\contentsline {section}{\numberline {6}Requirements}{3}%
-\contentsline {subsection}{\numberline {6.1}Veiligheid}{3}%
-\contentsline {subsection}{\numberline {6.2}Efficiëntie}{3}%
-\contentsline {subsection}{\numberline {6.3}Capaciteit}{3}%
-\contentsline {subsection}{\numberline {6.4}Onderhoudskosten}{3}%
-\contentsline {subsection}{\numberline {6.5}Duurzaamheid}{3}%
-\contentsline {section}{\numberline {7}Specificaties}{3}%
-\contentsline {section}{\numberline {8}Model}{3}%
-\contentsline {section}{\numberline {9}Verifiëren}{3}%
-\contentsline {section}{\numberline {10}Conclusie}{3}%
-\contentsline {section}{\numberline {11}Bijlagen}{4}%
-\contentsline {section}{Referenties}{5}%
+\contentsline {subsection}{\numberline {4.1}Dataverzameling}{3}%
+\contentsline {subsection}{\numberline {4.2}Inclusie- en exclusiecriteria}{3}%
+\contentsline {subsection}{\numberline {4.3}Onderzoeksverloop}{3}%
+\contentsline {subsection}{\numberline {4.4}Data-analyse}{4}%
+\contentsline {subsection}{\numberline {4.5}Validiteit en betrouwbaarheid}{4}%
+\contentsline {section}{\numberline {5}Literatuuronderzoek}{4}%
+\contentsline {subsection}{\numberline {5.1}Wat is een sluis?}{4}%
+\contentsline {subsection}{\numberline {5.2}Hoe opereert een sluis?}{4}%
+\contentsline {subsection}{\numberline {5.3}Hoe wordt een sluis onderhouden?}{4}%
+\contentsline {subsection}{\numberline {5.4}Wat kan er fout gaan met een sluis?}{4}%
+\contentsline {section}{\numberline {6}Requirements}{4}%
+\contentsline {subsection}{\numberline {6.1}Veiligheid}{5}%
+\contentsline {subsection}{\numberline {6.2}Efficiëntie}{5}%
+\contentsline {subsection}{\numberline {6.3}Capaciteit}{5}%
+\contentsline {subsection}{\numberline {6.4}Onderhoudskosten}{5}%
+\contentsline {subsection}{\numberline {6.5}Duurzaamheid}{5}%
+\contentsline {section}{\numberline {7}Specificaties}{5}%
+\contentsline {section}{\numberline {8}Model}{5}%
+\contentsline {section}{\numberline {9}Verifiëren}{5}%
+\contentsline {section}{\numberline {10}Conclusie}{5}%
+\contentsline {section}{\numberline {11}Bijlagen}{6}%
+\contentsline {section}{Referenties}{7}%
