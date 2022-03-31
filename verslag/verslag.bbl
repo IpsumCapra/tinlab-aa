@@ -1,3 +1,78 @@
 \begin{thebibliography}{}
 
+\bibitem [\protect \citeauthoryear {%
+Oosterveld%
+}{%
+Oosterveld%
+}{%
+{\protect \APACyear {1976}}%
+}]{%
+oosterveld_1976}
+\APACinsertmetastar {%
+oosterveld_1976}%
+\begin{APACrefauthors}%
+Oosterveld, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1976}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sluizen: Sluissimulatie, kanaaloptimalisatie} {Sluizen:
+  Sluissimulatie, kanaaloptimalisatie}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{TU Delft Research Repository}{}{}{}.
+\newblock
+\begin{APACrefURL}
+  \url{https://repository.tudelft.nl/islandora/object/uuid:91c8cde2-0708-430f-a736-15f2164b6709}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rijkswaterstaat%
+}{%
+Rijkswaterstaat%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+rws_2022}
+\APACinsertmetastar {%
+rws_2022}%
+\begin{APACrefauthors}%
+Rijkswaterstaat.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+\APACrefbtitle {Dammen, sluizen en stuwen.} {Dammen, sluizen en stuwen.}
+\newblock
+\begin{APACrefURL}
+  \url{https://www.rijkswaterstaat.nl/water/waterbeheer/bescherming-tegen-het-water/waterkeringen/dammen-sluizen-en-stuwen}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Van Dale}%
+}{%
+{Van Dale}%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+dvd_verval}
+\APACinsertmetastar {%
+dvd_verval}%
+\begin{APACrefauthors}%
+{Van Dale}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+\APACrefbtitle {Betekenis 'Verval'.} {Betekenis 'verval'.}
+\newblock
+\begin{APACrefURL}
+  \url{https://www.vandale.nl/gratis-woordenboek/nederlands/betekenis/Verval}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
 \end{thebibliography}
