@@ -57,8 +57,10 @@ K~G, B.%
 
 \bibitem [\protect \citeauthoryear {%
 {Ministerie van Infrastructuur en Waterstaat}%
+\ \BBA {} {Rijkswaterstaat}%
 }{%
 {Ministerie van Infrastructuur en Waterstaat}%
+\ \BBA {} {Rijkswaterstaat}%
 }{%
 {\protect \APACyear {2018}}%
 }]{%
@@ -66,7 +68,8 @@ rws_2018}
 \APACinsertmetastar {%
 rws_2018}%
 \begin{APACrefauthors}%
-{Ministerie van Infrastructuur en Waterstaat}, R.%
+{Ministerie van Infrastructuur en Waterstaat}%
+\BCBT {}\ \BBA {} {Rijkswaterstaat}.%
 \end{APACrefauthors}%
 \unskip\
 \newblock

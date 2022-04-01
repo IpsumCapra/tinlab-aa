@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex verslag"] 1648812961 "verslag.aux" "verslag.bbl" "verslag" 1648812982
+["bibtex verslag"] 1648814215 "verslag.aux" "verslag.bbl" "verslag" 1648816075
   "/usr/share/texlive/texmf-dist/bibtex/bst/apacite/apacite.bst" 1374530685 141073 9d7b79dbf9d91133318126032cff8c27 ""
-  "references.bib" 1648812606 1748 f2a91d19f464b8db2081b1feff8ff1eb ""
-  "verslag.aux" 1648812982 4568 0c0d00599df77c63a8825037449de415 "pdflatex"
+  "references.bib" 1648813038 1751 15e59e69175b62bbfffa71279057aab3 ""
+  "verslag.aux" 1648816075 4770 e2a7e8b8ff8eb5011a64b4f15ee54046 "pdflatex"
   (generated)
   "verslag.blg"
   "verslag.bbl"
-["pdflatex"] 1648812982 "verslag.tex" "verslag.pdf" "verslag" 1648812982
+["pdflatex"] 1648816074 "verslag.tex" "verslag.pdf" "verslag" 1648816075
   "/etc/texmf/web2c/texmf.cnf" 1646649410 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -57,15 +57,15 @@
   "sections/requirements.tex" 1648476334 413 2a33d0de8706604b4a2d2114210e2177 ""
   "sections/samenvatting.tex" 1648475686 111 69405f5c8bc86d6ba432fa1746e289ed ""
   "sections/specificaties.tex" 1648475734 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "sections/theoretisch_kader.tex" 1648812981 3477 2474a76795b93ab365b095746ed05c8b ""
+  "sections/theoretisch_kader.tex" 1648813531 3690 adc63859054b072598a123107100a9f1 ""
   "sections/verifieren.tex" 1648475746 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "sections/wat_is_een_sluis.tex" 1648727796 866 650b111e6fd4a38000b8d4f79b47a189 ""
-  "verslag.aux" 1648812982 4568 0c0d00599df77c63a8825037449de415 "pdflatex"
-  "verslag.bbl" 1648812961 4318 033900ee8295bf7eb1fc23134a58b487 "bibtex verslag"
+  "sections/wat_is_een_sluis.tex" 1648816074 1730 3ba0b4417179bbed25c9ba913df9f89b ""
+  "verslag.aux" 1648816075 4770 e2a7e8b8ff8eb5011a64b4f15ee54046 "pdflatex"
+  "verslag.bbl" 1648814216 4410 fe39d95f9f2e0023e735b002b1a2a710 "bibtex verslag"
   "verslag.tex" 1648475791 1354 be4f3ab2e7d12cce228fbf3a9f3fed43 ""
-  "verslag.toc" 1648812982 1719 af5dd640e219a80fc3e13708a8578332 "pdflatex"
+  "verslag.toc" 1648816075 1719 c959d87a3a894e3c0bb4153e5e51c551 "pdflatex"
   (generated)
   "verslag.aux"
-  "verslag.toc"
-  "verslag.log"
   "verslag.pdf"
+  "verslag.log"
+  "verslag.toc"
