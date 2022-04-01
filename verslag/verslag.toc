@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {4}Methodologie}{3}%
 \contentsline {subsection}{\numberline {4.1}Dataverzameling}{3}%
 \contentsline {subsection}{\numberline {4.2}Inclusie- en exclusiecriteria}{3}%
-\contentsline {subsection}{\numberline {4.3}Onderzoeksverloop}{3}%
+\contentsline {subsection}{\numberline {4.3}Onderzoeksverloop}{4}%
 \contentsline {subsection}{\numberline {4.4}Data-analyse}{4}%
 \contentsline {subsection}{\numberline {4.5}Validiteit en betrouwbaarheid}{4}%
 \contentsline {section}{\numberline {5}Literatuuronderzoek}{4}%
