@@ -1,9 +1,9 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-G~J%
+Arends%
 }{%
-G~J%
+Arends%
 }{%
 {\protect \APACyear {1994}}%
 }]{%
@@ -11,7 +11,7 @@ arends_1994}
 \APACinsertmetastar {%
 arends_1994}%
 \begin{APACrefauthors}%
-G~J, A.%
+Arends, G\BPBI J.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
@@ -29,9 +29,9 @@ G~J, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-K~G%
+Bezuijen%
 }{%
-K~G%
+Bezuijen%
 }{%
 {\protect \APACyear {2000}}%
 }]{%
@@ -39,7 +39,7 @@ bezuijen_2000}
 \APACinsertmetastar {%
 bezuijen_2000}%
 \begin{APACrefauthors}%
-K~G, B.%
+Bezuijen, K\BPBI G.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
