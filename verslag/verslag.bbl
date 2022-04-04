@@ -56,6 +56,54 @@ Bezuijen, K\BPBI G.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+CEMT%
+}{%
+CEMT%
+}{%
+{\protect \APACyear {1992}}%
+}]{%
+cemt_1992}
+\APACinsertmetastar {%
+cemt_1992}%
+\begin{APACrefauthors}%
+CEMT.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1992}{}{}.
+\newblock
+\APACrefbtitle {RESOLUTION No. 92/2 ON NEW CLASSIFICATION OF INLAND WATERWAYS.}
+  {Resolution no. 92/2 on new classification of inland waterways.}
+\newblock
+\begin{APACrefURL}
+  \url{https://www.itf-oecd.org/sites/default/files/docs/wat19922e.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+GWW%
+}{%
+GWW%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+gww_2020}
+\APACinsertmetastar {%
+gww_2020}%
+\begin{APACrefauthors}%
+GWW.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+\APACrefbtitle {Tagarchief: Nieuwe Sluis.} {Tagarchief: Nieuwe sluis.}
+\newblock
+\begin{APACrefURL} \url{https://www.gww-bouw.nl/tag/nieuwe-sluis/}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 {Ministerie van Infrastructuur en Waterstaat}%
 \ \BBA {} {Rijkswaterstaat}%
 }{%
@@ -108,6 +156,29 @@ Oosterveld, D.%
 \begin{APACrefURL}
   \url{https://repository.tudelft.nl/islandora/object/uuid:91c8cde2-0708-430f-a736-15f2164b6709}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rijkswaterstaat%
+}{%
+Rijkswaterstaat%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+rws_2020}
+\APACinsertmetastar {%
+rws_2020}%
+\begin{APACrefauthors}%
+Rijkswaterstaat.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+\APACrefbtitle {Standaard: Richtlijnen Vaarwegen 2020.} {Standaard: Richtlijnen
+  vaarwegen 2020.}
+\newblock
+\begin{APACrefURL} \url{https://standaarden.rws.nl/index.html} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
