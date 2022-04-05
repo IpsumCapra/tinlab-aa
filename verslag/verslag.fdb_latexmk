@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex verslag"] 1648552466 "verslag.aux" "verslag.bbl" "verslag" 1648552531
+["bibtex verslag"] 1649146231 "verslag.aux" "verslag.bbl" "verslag" 1649146232
   "/usr/share/texlive/texmf-dist/bibtex/bst/apacite/apacite.bst" 1374530685 141073 9d7b79dbf9d91133318126032cff8c27 ""
-  "references.bib" 1648551599 732 4c9f1e787a74be4fe535a67ff5f091b8 ""
-  "verslag.aux" 1648552531 2968 a2113be2782f332e498e14017e138367 "pdflatex"
+  "references.bib" 1649146221 2448 0e80805f3ac473449f7fe56a492cbdaf ""
+  "verslag.aux" 1649146232 5823 76a83d8f818173e8a5d4d4a7684acf21 "pdflatex"
   (generated)
   "verslag.blg"
   "verslag.bbl"
-["pdflatex"] 1648552531 "verslag.tex" "verslag.pdf" "verslag" 1648552531
+["pdflatex"] 1649146232 "verslag.tex" "verslag.pdf" "verslag" 1649146232
   "/etc/texmf/web2c/texmf.cnf" 1646649410 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -50,21 +50,22 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1646849389 6426283 9d0a8a29a29a34563691d2a991f338b0 ""
   "sections/bijlagen.tex" 1648475788 111 69405f5c8bc86d6ba432fa1746e289ed ""
   "sections/conclusie.tex" 1648475782 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "sections/inleiding.tex" 1648475693 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "sections/literatuuronderzoek.tex" 1648476937 278 bc07801e469ce81b99b31d8ca8d9d55c ""
-  "sections/methodologie.tex" 1648475712 111 69405f5c8bc86d6ba432fa1746e289ed ""
+  "sections/inleiding.tex" 1648720128 1023 9bcc73471210c0748dfbbd2151e97109 ""
+  "sections/literatuuronderzoek.tex" 1648725326 314 a6d9a5405a358557db02561fa9abaede ""
+  "sections/methodologie.tex" 1648720128 1401 feac0cbbdc1bf8e703b6b5210c577cde ""
   "sections/model.tex" 1648475740 111 69405f5c8bc86d6ba432fa1746e289ed ""
   "sections/requirements.tex" 1648476334 413 2a33d0de8706604b4a2d2114210e2177 ""
   "sections/samenvatting.tex" 1648475686 111 69405f5c8bc86d6ba432fa1746e289ed ""
   "sections/specificaties.tex" 1648475734 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "sections/theoretisch_kader.tex" 1648552530 3082 2c304bc2fc4ea7de1b07982870f21062 ""
+  "sections/theoretisch_kader.tex" 1649067699 4248 3eed4f6b8d0feeab5e63163c98282fcb ""
   "sections/verifieren.tex" 1648475746 111 69405f5c8bc86d6ba432fa1746e289ed ""
-  "verslag.aux" 1648552531 2968 a2113be2782f332e498e14017e138367 "pdflatex"
-  "verslag.bbl" 1648552466 1748 b2978ab425d1933cd70e6a1c20965ae6 "bibtex verslag"
+  "sections/wat_is_een_sluis.tex" 1649146229 5017 2e411f52ec78770058891f24aba434bf ""
+  "verslag.aux" 1649146232 5823 76a83d8f818173e8a5d4d4a7684acf21 "pdflatex"
+  "verslag.bbl" 1649146232 6469 53bcda3f021baf4844f5330313b23c69 "bibtex verslag"
   "verslag.tex" 1648475791 1354 be4f3ab2e7d12cce228fbf3a9f3fed43 ""
-  "verslag.toc" 1648552531 1367 81af64e632d5658cddbfbf0966c828d3 "pdflatex"
+  "verslag.toc" 1649146232 1719 77541b5b8c646db8e4063d6477f6f735 "pdflatex"
   (generated)
-  "verslag.pdf"
+  "verslag.aux"
   "verslag.toc"
   "verslag.log"
-  "verslag.aux"
+  "verslag.pdf"
