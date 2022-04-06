@@ -1,0 +1,31 @@
+\babel@toc {dutch}{}
+\contentsline {section}{\numberline {1}Samenvatting}{2}%
+\contentsline {section}{\numberline {2}Inleiding}{2}%
+\contentsline {section}{\numberline {3}Theoretisch Kader}{2}%
+\contentsline {subsection}{\numberline {3.1}Begrippenlijst}{3}%
+\contentsline {section}{\numberline {4}Methodologie}{3}%
+\contentsline {subsection}{\numberline {4.1}Dataverzameling}{4}%
+\contentsline {subsection}{\numberline {4.2}Inclusie- en exclusiecriteria}{4}%
+\contentsline {subsection}{\numberline {4.3}Onderzoeksverloop}{4}%
+\contentsline {subsection}{\numberline {4.4}Data-analyse}{4}%
+\contentsline {subsection}{\numberline {4.5}Validiteit en betrouwbaarheid}{4}%
+\contentsline {section}{\numberline {5}Literatuuronderzoek}{4}%
+\contentsline {subsection}{\numberline {5.1}Wat is een sluis?}{4}%
+\contentsline {subsection}{\numberline {5.2}Hoe opereert een sluis?}{6}%
+\contentsline {subsection}{\numberline {5.3}Hoe wordt een sluis onderhouden?}{9}%
+\contentsline {subsubsection}{\numberline {5.3.1}Dagelijkse inspectie}{9}%
+\contentsline {subsubsection}{\numberline {5.3.2}Door ontwikkelen onderhoud}{10}%
+\contentsline {paragraph}{Weet wanneer corrosie begint}{10}%
+\contentsline {subsection}{\numberline {5.4}Wat kan er fout gaan met een sluis?}{11}%
+\contentsline {section}{\numberline {6}Requirements}{11}%
+\contentsline {subsection}{\numberline {6.1}Veiligheid}{12}%
+\contentsline {subsection}{\numberline {6.2}Efficiëntie}{12}%
+\contentsline {subsection}{\numberline {6.3}Capaciteit}{12}%
+\contentsline {subsection}{\numberline {6.4}Onderhoud}{12}%
+\contentsline {subsection}{\numberline {6.5}Onderhoudskosten}{12}%
+\contentsline {subsection}{\numberline {6.6}Duurzaamheid}{12}%
+\contentsline {section}{\numberline {7}Model}{12}%
+\contentsline {section}{\numberline {8}Verifiëren}{12}%
+\contentsline {section}{\numberline {9}Conclusie}{12}%
+\contentsline {section}{\numberline {10}Bijlagen}{13}%
+\contentsline {section}{Referenties}{14}%
