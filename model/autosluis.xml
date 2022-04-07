@@ -7,14 +7,16 @@
 const int SLUIZEN = 1;
 
 // Channels:
-chan deurActie[SLUIZEN*2];
+broadcast chan deurActie[SLUIZEN*2];
 chan stoplG[SLUIZEN*2];
+chan stoplR[SLUIZEN*2];
 chan schut[SLUIZEN];</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
 		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
 		<declaration>// Place local declarations here.
 const int BEW_DUUR = 5;
+const double BEW_MARGE = 0.1;
 
 bool gaatOpen;
 clock x;</declaration>
@@ -46,7 +48,8 @@ clock x;</declaration>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="guard" x="-204" y="-161">gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
+			<label kind="guard" x="-204" y="-178">gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
+			<label kind="synchronisation" x="-204" y="-161">stoplG[deurId]!</label>
 			<nail x="-204" y="-136"/>
 			<nail x="-102" y="-136"/>
 		</transition>
@@ -120,21 +123,23 @@ clock x;</declaration>
 	<template>
 		<name>Stoplicht</name>
 		<parameter>int[0,SLUIZEN*2-1] stoplId</parameter>
-		<location id="id6" x="-340" y="-68">
+		<location id="id6" x="-340" y="-68" color="#ff0000">
 			<name x="-350" y="-102">Rood</name>
 		</location>
-		<location id="id7" x="-204" y="-68">
+		<location id="id7" x="-204" y="-68" color="#00ff00">
 			<name x="-214" y="-102">Groen</name>
 		</location>
 		<init ref="id6"/>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id6"/>
+			<label kind="synchronisation" x="-323" y="-34">deurActie[stoplId]?</label>
 			<nail x="-272" y="-34"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
+			<label kind="synchronisation" x="-314" y="-127">stoplG[stoplId]?</label>
 			<nail x="-272" y="-102"/>
 		</transition>
 	</template>
