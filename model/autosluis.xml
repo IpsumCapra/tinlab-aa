@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-	<declaration>// Place global declarations here.</declaration>
+	<declaration>// Place global declarations here.
+
+// Constants:
+const int SLUIZEN = 1;
+
+// Channels:
+chan deuren[SLUIZEN*2];
+chan stoplG[SLUIZEN*2];
+chan schut[SLUIZEN];</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
-		<parameter>int[0,1] deurId</parameter>
+		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
 		<declaration>// Place local declarations here.</declaration>
 		<location id="id0" x="-408" y="-102">
 			<name x="-418" y="-136">Dicht</name>
@@ -39,14 +47,15 @@
 	</template>
 	<template>
 		<name>Schutkolk</name>
+		<parameter>int[0,SLUIZEN-1] schutkolkId</parameter>
 		<location id="id3" x="-306" y="-34">
-			<name x="-416" y="-51">Linker Niveau</name>
+			<name x="-416" y="-51">LinkerNiveau</name>
 		</location>
 		<location id="id4" x="-170" y="-34">
 			<name x="-204" y="-85">Schuttende</name>
 		</location>
 		<location id="id5" x="-34" y="-34">
-			<name x="-17" y="-51">Rechter Niveau</name>
+			<name x="-17" y="-51">RechterNiveau</name>
 		</location>
 		<init ref="id3"/>
 		<transition>
@@ -96,6 +105,7 @@
 	</template>
 	<template>
 		<name>Stoplicht</name>
+		<parameter>int[0,SLUIZEN*2-1] stoplId</parameter>
 		<location id="id6" x="-340" y="-68">
 			<name x="-350" y="-102">Rood</name>
 		</location>
@@ -116,9 +126,16 @@
 	</template>
 	<template>
 		<name>Sluiscontroller</name>
+		<parameter>int[0,SLUIZEN-1] contId</parameter>
 		<location id="id8" x="0" y="0">
 		</location>
 		<init ref="id8"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id8"/>
+			<nail x="34" y="-34"/>
+			<nail x="34" y="34"/>
+		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
 system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
