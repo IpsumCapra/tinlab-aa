@@ -5,6 +5,7 @@
 
 // Constants:
 const int SLUIZEN = 1;
+const int MIN_RAND_INTERVAL = 3;
 
 // Channels:
 broadcast chan deurActie[SLUIZEN*2];
@@ -65,58 +66,98 @@ clock x;</declaration>
 	<template>
 		<name>Schutkolk</name>
 		<parameter>int[0,SLUIZEN-1] schutkolkId</parameter>
-		<location id="id3" x="-306" y="-34">
-			<name x="-416" y="-51">LinkerNiveau</name>
+		<declaration>// Place local declarations here.
+const int SCHUT_DUUR = 15;
+const double SCHUT_MARGE = 1.1;
+
+// Doe dit later adhv de CEMT klasse.
+const int CAPACITEIT = 3;
+
+int[0,CAPACITEIT-1] boten;
+
+bool leegGelopen;
+bool opschutten;
+clock x;</declaration>
+		<location id="id3" x="-408" y="-34">
+			<name x="-518" y="-51">LinkerNiveau</name>
 		</location>
 		<location id="id4" x="-170" y="-34">
 			<name x="-204" y="-85">Schuttende</name>
 		</location>
-		<location id="id5" x="-34" y="-34">
-			<name x="-17" y="-51">RechterNiveau</name>
+		<location id="id5" x="68" y="-34">
+			<name x="85" y="-51">RechterNiveau</name>
 		</location>
 		<init ref="id3"/>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id3"/>
-			<nail x="-306" y="-102"/>
-			<nail x="-340" y="-68"/>
+			<label kind="guard" x="-646" y="-144">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &lt;= CAPACITEIT&amp;&amp;
+leegGelopen</label>
+			<label kind="assignment" x="-646" y="-85">x:=0,boten++</label>
+			<nail x="-408" y="-102"/>
+			<nail x="-442" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id3"/>
-			<nail x="-306" y="34"/>
-			<nail x="-340" y="0"/>
+			<label kind="guard" x="-646" y="0">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &gt; 0&amp;&amp;
+!leegGelopen</label>
+			<label kind="assignment" x="-646" y="59">x:=0,--boten,leegGelopen:=boten==0</label>
+			<nail x="-408" y="34"/>
+			<nail x="-442" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id5"/>
-			<nail x="-34" y="34"/>
-			<nail x="0" y="0"/>
+			<label kind="guard" x="110" y="-8">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &gt; 0&amp;&amp;
+!leegGelopen</label>
+			<label kind="assignment" x="110" y="51">x:=0,--boten,leegGelopen:=boten==0</label>
+			<nail x="68" y="34"/>
+			<nail x="102" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id5"/>
-			<nail x="-34" y="-102"/>
-			<nail x="0" y="-68"/>
+			<label kind="guard" x="110" y="-144">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &lt;= CAPACITEIT&amp;&amp;
+leegGelopen</label>
+			<label kind="assignment" x="110" y="-85">x:=0,boten++</label>
+			<nail x="68" y="-102"/>
+			<nail x="102" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id3"/>
+			<label kind="guard" x="-340" y="0">!opschutten&amp;&amp;
+x&gt;=SCHUT_DUUR</label>
 			<nail x="-238" y="0"/>
+			<nail x="-340" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id4"/>
+			<label kind="synchronisation" x="-102" y="17">schut[schutkolkId]?</label>
+			<label kind="assignment" x="-212" y="0">opschutten:=false,x:=0,leegGelopen:=false</label>
+			<nail x="0" y="0"/>
 			<nail x="-102" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
+			<label kind="guard" x="-102" y="-110">opschutten&amp;&amp;
+x&gt;=SCHUT_DUUR</label>
 			<nail x="-102" y="-68"/>
+			<nail x="0" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
+			<label kind="synchronisation" x="-340" y="-93">schut[schutkolkId]?</label>
+			<label kind="assignment" x="-399" y="-110">opschutten:=true,x:=0,leegGelopen:=false</label>
+			<nail x="-340" y="-68"/>
 			<nail x="-238" y="-68"/>
 		</transition>
 	</template>
@@ -147,22 +188,10 @@ clock x;</declaration>
 		<name>Sluiscontroller</name>
 		<parameter>int[0,SLUIZEN-1] contId</parameter>
 		<location id="id8" x="0" y="0">
+			<name x="-10" y="-34">Start</name>
+			<label kind="comments" x="-289" y="-161">5LU15-W8R Automatische SluisController</label>
 		</location>
 		<init ref="id8"/>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id8"/>
-			<label kind="synchronisation" x="-170" y="-17">deurActie[contId+1]!</label>
-			<nail x="-34" y="34"/>
-			<nail x="-34" y="-34"/>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id8"/>
-			<label kind="synchronisation" x="42" y="-17">deurActie[contId]!</label>
-			<nail x="34" y="-34"/>
-			<nail x="34" y="34"/>
-		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
 system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
