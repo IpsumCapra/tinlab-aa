@@ -7,17 +7,26 @@
 const int SLUIZEN = 1;
 const int MIN_RAND_INTERVAL = 3;
 
+const int BEW_DUUR = 5;
+const int BEW_MARGE = 1;
+
+const int SCHUT_DUUR = 15;
+const int SCHUT_MARGE = 3;
+
 // Channels:
 broadcast chan deurActie[SLUIZEN*2];
 chan stoplG[SLUIZEN*2];
 chan stoplR[SLUIZEN*2];
-chan schut[SLUIZEN];</declaration>
+chan schut[SLUIZEN];
+
+// Variables:
+bool open[SLUIZEN*2];
+bool schutten[SLUIZEN];
+bool isGroen[SLUIZEN*2];</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
 		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
 		<declaration>// Place local declarations here.
-const int BEW_DUUR = 5;
-const double BEW_MARGE = 0.1;
 
 bool gaatOpen;
 clock x;</declaration>
@@ -34,7 +43,9 @@ clock x;</declaration>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id0"/>
-			<label kind="guard" x="-442" y="-68">!gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
+			<label kind="guard" x="-442" y="-68">!gaatOpen&amp;&amp;x&gt;=BEW_DUUR&amp;&amp;
+x&lt;=BEW_DUUR+BEW_MARGE</label>
+			<label kind="assignment" x="-442" y="-34">open[deurId]=false</label>
 			<nail x="-340" y="-68"/>
 			<nail x="-442" y="-68"/>
 		</transition>
@@ -49,8 +60,10 @@ clock x;</declaration>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="guard" x="-204" y="-178">gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
-			<label kind="synchronisation" x="-204" y="-161">stoplG[deurId]!</label>
+			<label kind="guard" x="-204" y="-212">gaatOpen&amp;&amp;x&gt;=BEW_DUUR&amp;&amp;
+x&lt;=BEW_DUUR+BEW_MARGE</label>
+			<label kind="synchronisation" x="-204" y="-177">stoplG[deurId]!</label>
+			<label kind="assignment" x="-204" y="-161">open[deurId]=true</label>
 			<nail x="-204" y="-136"/>
 			<nail x="-102" y="-136"/>
 		</transition>
@@ -67,15 +80,13 @@ clock x;</declaration>
 		<name>Schutkolk</name>
 		<parameter>int[0,SLUIZEN-1] schutkolkId</parameter>
 		<declaration>// Place local declarations here.
-const int SCHUT_DUUR = 15;
-const double SCHUT_MARGE = 1.1;
 
 // Doe dit later adhv de CEMT klasse.
 const int CAPACITEIT = 3;
 
-int[0,CAPACITEIT-1] boten;
+int[0,CAPACITEIT] boten;
 
-bool leegGelopen;
+bool leegGelopen=true;
 bool opschutten;
 clock x;</declaration>
 		<location id="id3" x="-408" y="-34">
@@ -91,9 +102,10 @@ clock x;</declaration>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id3"/>
-			<label kind="guard" x="-646" y="-144">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
-boten &lt;= CAPACITEIT&amp;&amp;
-leegGelopen</label>
+			<label kind="guard" x="-646" y="-161">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &lt; CAPACITEIT&amp;&amp;
+leegGelopen&amp;&amp;
+isGroen[schutkolkId]</label>
 			<label kind="assignment" x="-646" y="-85">x:=0,boten++</label>
 			<nail x="-408" y="-102"/>
 			<nail x="-442" y="-68"/>
@@ -103,8 +115,9 @@ leegGelopen</label>
 			<target ref="id3"/>
 			<label kind="guard" x="-646" y="0">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &gt; 0&amp;&amp;
-!leegGelopen</label>
-			<label kind="assignment" x="-646" y="59">x:=0,--boten,leegGelopen:=boten==0</label>
+!leegGelopen&amp;&amp;
+isGroen[schutkolkId]</label>
+			<label kind="assignment" x="-646" y="76">x:=0,--boten,leegGelopen:=boten==0</label>
 			<nail x="-408" y="34"/>
 			<nail x="-442" y="0"/>
 		</transition>
@@ -113,17 +126,19 @@ boten &gt; 0&amp;&amp;
 			<target ref="id5"/>
 			<label kind="guard" x="110" y="-8">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &gt; 0&amp;&amp;
-!leegGelopen</label>
-			<label kind="assignment" x="110" y="51">x:=0,--boten,leegGelopen:=boten==0</label>
+!leegGelopen&amp;&amp;
+isGroen[schutkolkId+1]</label>
+			<label kind="assignment" x="110" y="68">x:=0,--boten,leegGelopen:=boten==0</label>
 			<nail x="68" y="34"/>
 			<nail x="102" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id5"/>
-			<label kind="guard" x="110" y="-144">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
-boten &lt;= CAPACITEIT&amp;&amp;
-leegGelopen</label>
+			<label kind="guard" x="110" y="-161">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
+boten &lt; CAPACITEIT&amp;&amp;
+leegGelopen&amp;&amp;
+isGroen[schutkolkId+1]</label>
 			<label kind="assignment" x="110" y="-85">x:=0,boten++</label>
 			<nail x="68" y="-102"/>
 			<nail x="102" y="-68"/>
@@ -133,22 +148,27 @@ leegGelopen</label>
 			<target ref="id3"/>
 			<label kind="guard" x="-340" y="0">!opschutten&amp;&amp;
 x&gt;=SCHUT_DUUR</label>
+			<label kind="assignment" x="-340" y="34">schutten[schutkolkId]=false</label>
 			<nail x="-238" y="0"/>
 			<nail x="-340" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id4"/>
-			<label kind="synchronisation" x="-102" y="17">schut[schutkolkId]?</label>
-			<label kind="assignment" x="-212" y="0">opschutten:=false,x:=0,leegGelopen:=false</label>
+			<label kind="synchronisation" x="-102" y="85">schut[schutkolkId]?</label>
+			<label kind="assignment" x="-102" y="8">opschutten:=false,x:=0,
+leegGelopen:=false,
+schutten[schutkolkId]=true,
+leegGelopen=boten==0</label>
 			<nail x="0" y="0"/>
 			<nail x="-102" y="0"/>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-102" y="-110">opschutten&amp;&amp;
+			<label kind="guard" x="-102" y="-127">opschutten&amp;&amp;
 x&gt;=SCHUT_DUUR</label>
+			<label kind="assignment" x="-102" y="-93">schutten[schutkolkId]=false</label>
 			<nail x="-102" y="-68"/>
 			<nail x="0" y="-68"/>
 		</transition>
@@ -156,7 +176,10 @@ x&gt;=SCHUT_DUUR</label>
 			<source ref="id3"/>
 			<target ref="id4"/>
 			<label kind="synchronisation" x="-340" y="-93">schut[schutkolkId]?</label>
-			<label kind="assignment" x="-399" y="-110">opschutten:=true,x:=0,leegGelopen:=false</label>
+			<label kind="assignment" x="-340" y="-170">opschutten:=true,x:=0,
+leegGelopen:=false,
+schutten[schutkolkId]=true,
+leegGelopen=boten==0</label>
 			<nail x="-340" y="-68"/>
 			<nail x="-238" y="-68"/>
 		</transition>
@@ -175,29 +198,93 @@ x&gt;=SCHUT_DUUR</label>
 			<source ref="id7"/>
 			<target ref="id6"/>
 			<label kind="synchronisation" x="-323" y="-34">deurActie[stoplId]?</label>
+			<label kind="assignment" x="-323" y="-17">isGroen[stoplId]=false</label>
 			<nail x="-272" y="-34"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="synchronisation" x="-314" y="-127">stoplG[stoplId]?</label>
+			<label kind="synchronisation" x="-314" y="-144">stoplG[stoplId]?</label>
+			<label kind="assignment" x="-314" y="-127">isGroen[stoplId]=true</label>
 			<nail x="-272" y="-102"/>
 		</transition>
 	</template>
 	<template>
 		<name>Sluiscontroller</name>
 		<parameter>int[0,SLUIZEN-1] contId</parameter>
-		<location id="id8" x="0" y="0">
-			<name x="-10" y="-34">Start</name>
-			<label kind="comments" x="-289" y="-161">5LU15-W8R Automatische SluisController</label>
+		<declaration>// Place local declarations here.
+
+const int INVAAR_DELAY = 45;
+
+clock x;
+clock y;</declaration>
+		<location id="id8" x="-8806" y="0">
 		</location>
-		<init ref="id8"/>
+		<location id="id9" x="-9044" y="0">
+		</location>
+		<location id="id10" x="-9214" y="0">
+		</location>
+		<location id="id11" x="-9384" y="0">
+		</location>
+		<location id="id12" x="-9554" y="0">
+		</location>
+		<location id="id13" x="-9724" y="0">
+			<name x="-9775" y="-34">Start</name>
+		</location>
+		<init ref="id13"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id13"/>
+			<label kind="guard" x="-9375" y="127">x&gt;=BEW_DUUR+BEW_MARGE+1&amp;&amp;
+!open[contId+1]</label>
+			<label kind="synchronisation" x="-9375" y="161">schut[contId]!</label>
+			<label kind="assignment" x="-9375" y="178">x:=0</label>
+			<nail x="-9282" y="127"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-8942" y="-85">y&gt;=INVAAR_DELAY&amp;&amp;
+open[contId+1]</label>
+			<label kind="synchronisation" x="-8942" y="-51">deurActie[contId+1]!</label>
+			<label kind="assignment" x="-8942" y="-34">x:=0,y:=0</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-9197" y="-68">x&gt;=SCHUT_DUUR+SCHUT_MARGE+1&amp;&amp;
+!schutten[contId]</label>
+			<label kind="synchronisation" x="-9197" y="-34">deurActie[contId+1]!</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-9367" y="-93">x&gt;=BEW_DUUR+BEW_MARGE+1&amp;&amp;
+!open[contId]</label>
+			<label kind="synchronisation" x="-9367" y="-51">schut[contId]!</label>
+			<label kind="assignment" x="-9367" y="-34">x:=0</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id11"/>
+			<label kind="guard" x="-9545" y="-85">y&gt;=INVAAR_DELAY&amp;&amp;
+open[contId]</label>
+			<label kind="synchronisation" x="-9545" y="-51">deurActie[contId]!</label>
+			<label kind="assignment" x="-9545" y="-34">x:=0,y:=0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-9690" y="-119">x&gt;=SCHUT_DUUR+SCHUT_MARGE+1&amp;&amp;
+!schutten[contId]</label>
+			<label kind="synchronisation" x="-9690" y="-51">deurActie[contId]!</label>
+		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
 system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 	<queries>
 		<query>
-			<formula></formula>
+			<formula>A[] not deadlock</formula>
 			<comment></comment>
 		</query>
 	</queries>
