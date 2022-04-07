@@ -3,15 +3,125 @@
 <nta>
 	<declaration>// Place global declarations here.</declaration>
 	<template>
-		<name x="5" y="5">Controller</name>
+		<name x="5" y="5">Sluisdeur</name>
+		<parameter>int[0,1] deurId</parameter>
 		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="0" y="0">
+		<location id="id0" x="-408" y="-102">
+			<name x="-418" y="-136">Dicht</name>
+		</location>
+		<location id="id1" x="-272" y="-102">
+			<name x="-306" y="-153">Bewegende</name>
+		</location>
+		<location id="id2" x="-136" y="-102">
+			<name x="-146" y="-136">Open</name>
 		</location>
 		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<nail x="-340" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<nail x="-204" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<nail x="-204" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<nail x="-340" y="-136"/>
+		</transition>
+	</template>
+	<template>
+		<name>Schutkolk</name>
+		<location id="id3" x="-306" y="-34">
+			<name x="-416" y="-51">Linker Niveau</name>
+		</location>
+		<location id="id4" x="-170" y="-34">
+			<name x="-204" y="-85">Schuttende</name>
+		</location>
+		<location id="id5" x="-34" y="-34">
+			<name x="-17" y="-51">Rechter Niveau</name>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<nail x="-306" y="-102"/>
+			<nail x="-340" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<nail x="-306" y="34"/>
+			<nail x="-340" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<nail x="-34" y="34"/>
+			<nail x="0" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<nail x="-34" y="-102"/>
+			<nail x="0" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<nail x="-238" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<nail x="-102" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<nail x="-102" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<nail x="-238" y="-68"/>
+		</transition>
+	</template>
+	<template>
+		<name>Stoplicht</name>
+		<location id="id6" x="-340" y="-68">
+			<name x="-350" y="-102">Rood</name>
+		</location>
+		<location id="id7" x="-204" y="-68">
+			<name x="-214" y="-102">Groen</name>
+		</location>
+		<init ref="id6"/>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<nail x="-272" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<nail x="-272" y="-102"/>
+		</transition>
+	</template>
+	<template>
+		<name>Sluiscontroller</name>
+		<location id="id8" x="0" y="0">
+		</location>
+		<init ref="id8"/>
 	</template>
 	<system>// List one or more processes to be composed into a system.
-system Controller;
-    </system>
+system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 	<queries>
 		<query>
 			<formula></formula>
