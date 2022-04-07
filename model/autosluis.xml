@@ -7,41 +7,55 @@
 const int SLUIZEN = 1;
 
 // Channels:
-chan deuren[SLUIZEN*2];
+chan deurActie[SLUIZEN*2];
 chan stoplG[SLUIZEN*2];
 chan schut[SLUIZEN];</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
 		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
-		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="-408" y="-102">
-			<name x="-418" y="-136">Dicht</name>
+		<declaration>// Place local declarations here.
+const int BEW_DUUR = 5;
+
+bool gaatOpen;
+clock x;</declaration>
+		<location id="id0" x="-510" y="-102">
+			<name x="-520" y="-136">Dicht</name>
 		</location>
 		<location id="id1" x="-272" y="-102">
 			<name x="-306" y="-153">Bewegende</name>
 		</location>
-		<location id="id2" x="-136" y="-102">
-			<name x="-146" y="-136">Open</name>
+		<location id="id2" x="-34" y="-102">
+			<name x="-44" y="-136">Open</name>
 		</location>
 		<init ref="id0"/>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id0"/>
+			<label kind="guard" x="-442" y="-68">!gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
 			<nail x="-340" y="-68"/>
+			<nail x="-442" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id2"/>
 			<target ref="id1"/>
+			<label kind="synchronisation" x="-204" y="-51">deurActie[deurId]?</label>
+			<label kind="assignment" x="-204" y="-68">gaatOpen:=false,x:=0</label>
+			<nail x="-102" y="-68"/>
 			<nail x="-204" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
+			<label kind="guard" x="-204" y="-161">gaatOpen&amp;&amp;x&gt;=BEW_DUUR</label>
 			<nail x="-204" y="-136"/>
+			<nail x="-102" y="-136"/>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
+			<label kind="synchronisation" x="-442" y="-161">deurActie[deurId]?</label>
+			<label kind="assignment" x="-442" y="-178">gaatOpen:=true,x:=0</label>
+			<nail x="-442" y="-136"/>
 			<nail x="-340" y="-136"/>
 		</transition>
 	</template>
@@ -133,6 +147,14 @@ chan schut[SLUIZEN];</declaration>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id8"/>
+			<label kind="synchronisation" x="-170" y="-17">deurActie[contId+1]!</label>
+			<nail x="-34" y="34"/>
+			<nail x="-34" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="42" y="-17">deurActie[contId]!</label>
 			<nail x="34" y="-34"/>
 			<nail x="34" y="34"/>
 		</transition>
