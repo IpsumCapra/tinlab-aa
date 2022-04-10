@@ -283,5 +283,13 @@ system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 			<formula>A[] not deadlock</formula>
 			<comment></comment>
 		</query>
+		<query>
+			<formula>A[] not (open[0] &amp;&amp; open[1])</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E[] Sluisdeur(0).Open &amp;&amp; Stoplicht(0).Groen</formula>
+			<comment></comment>
+		</query>
 	</queries>
 </nta>
