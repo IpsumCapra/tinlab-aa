@@ -243,8 +243,9 @@ clock y;</declaration>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-9945" y="102">y&gt;=INVAAR_DELAY&amp;&amp;
-open[contId+1]</label>
+			<label kind="guard" x="-9945" y="85">y&gt;=INVAAR_DELAY&amp;&amp;
+open[contId+1]&amp;&amp;
+!kolkVol[contId]</label>
 			<label kind="synchronisation" x="-9945" y="136">deurActie[contId*2+1]!</label>
 			<label kind="assignment" x="-9945" y="153">x:=0,y:=0</label>
 		</transition>
@@ -264,8 +265,9 @@ open[contId+1]</label>
 		<transition>
 			<source ref="id12"/>
 			<target ref="id11"/>
-			<label kind="guard" x="-9486" y="-34">y&gt;=INVAAR_DELAY&amp;&amp;
-open[contId]</label>
+			<label kind="guard" x="-9486" y="-51">y&gt;=INVAAR_DELAY&amp;&amp;
+open[contId]&amp;&amp;
+!kolkVol[contId]</label>
 			<label kind="synchronisation" x="-9486" y="0">deurActie[contId*2]!</label>
 			<label kind="assignment" x="-9486" y="17">x:=0,y:=0</label>
 		</transition>
@@ -281,14 +283,26 @@ system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 	<queries>
 		<query>
 			<formula>A[] not deadlock</formula>
-			<comment></comment>
+			<comment>Het model heeft geen deadlocks.</comment>
 		</query>
 		<query>
-			<formula>A[] not (open[0] &amp;&amp; open[1])</formula>
-			<comment></comment>
+			<formula>A[] Sluisdeur(0).Open imply Stoplicht(0).Groen</formula>
+			<comment>Als de linker deur open staat, staat het stoplicht van deze deur altijd op groen.</comment>
 		</query>
 		<query>
-			<formula>E[] Sluisdeur(0).Open &amp;&amp; Stoplicht(0).Groen</formula>
+			<formula>A[] Sluisdeur(1).Open imply Stoplicht(1).Groen</formula>
+			<comment>Als de rechter deur open staat, staat het stoplicht van deze deur altijd op groen.</comment>
+		</query>
+		<query>
+			<formula>A[] !(Sluisdeur(0).Open &amp;&amp; Sluisdeur(1).Open)</formula>
+			<comment>De twee sluisdeuren staan nooit tegelijkertijd open.</comment>
+		</query>
+		<query>
+			<formula>A[] Schutkolk(0).Schuttende imply (Sluisdeur(0).Dicht &amp;&amp; Sluisdeur(1).Dicht)</formula>
+			<comment>Wanneer de sluis aan het schutten is, zijn beide deuren dicht.</comment>
+		</query>
+		<query>
+			<formula>kolkVol[0] --&gt; </formula>
 			<comment></comment>
 		</query>
 	</queries>
