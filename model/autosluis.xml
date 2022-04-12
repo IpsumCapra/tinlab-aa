@@ -93,7 +93,7 @@ bool opschutten;
 clock x;</declaration>
 		<location id="id3" x="-408" y="-34">
 			<name x="-518" y="-51">LinkerNiveau</name>
-			<label kind="invariant" x="-680" y="-51">y&lt;=INVAAR_DELAY</label>
+			<label kind="invariant" x="-671" y="-51">y&lt;=INVAAR_DELAY</label>
 		</location>
 		<location id="id4" x="-170" y="-34">
 			<name x="-204" y="-85">Schuttende</name>
@@ -101,7 +101,7 @@ clock x;</declaration>
 		</location>
 		<location id="id5" x="68" y="-34">
 			<name x="85" y="-51">RechterNiveau</name>
-			<label kind="invariant" x="204" y="-51">y&lt;=INVAAR_DELAY</label>
+			<label kind="invariant" x="212" y="-51">y&lt;=INVAAR_DELAY</label>
 		</location>
 		<init ref="id3"/>
 		<transition>
@@ -314,7 +314,7 @@ system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 			<comment>Als het rechterstoplicht op rood staat betekend dat dat de rechter sluisdeur nog niet helemaal open/dicht is, of helemaal dicht is.</comment>
 		</query>
 		<query>
-			<formula>A[] Sluiscontroller(0).z &lt;= 359</formula>
+			<formula>A[] Sluiscontroller(0).z &lt;= 360</formula>
 			<comment>De sluis cycled binnen 50 tijdseeneheden.</comment>
 		</query>
 		<query>
