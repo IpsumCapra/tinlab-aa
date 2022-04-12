@@ -20,7 +20,8 @@ chan schut[SLUIZEN];
 // Variables:
 bool open[SLUIZEN*2];
 bool schutten[SLUIZEN];
-bool isGroen[SLUIZEN*2];</declaration>
+bool isGroen[SLUIZEN*2];
+bool kolkVol[SLUIZEN];</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
 		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
@@ -82,7 +83,6 @@ const int CAPACITEIT = 3;
 
 int[0,CAPACITEIT] boten;
 
-bool leegGelopen=true;
 bool opschutten;
 clock x;</declaration>
 		<location id="id3" x="-408" y="-34">
@@ -100,7 +100,7 @@ clock x;</declaration>
 			<target ref="id3"/>
 			<label kind="guard" x="-646" y="-161">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &lt; CAPACITEIT&amp;&amp;
-leegGelopen&amp;&amp;
+!kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2]</label>
 			<label kind="assignment" x="-646" y="-85">x:=0,boten++</label>
 			<nail x="-408" y="-102"/>
@@ -111,9 +111,9 @@ isGroen[schutkolkId*2]</label>
 			<target ref="id3"/>
 			<label kind="guard" x="-646" y="0">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &gt; 0&amp;&amp;
-!leegGelopen&amp;&amp;
+kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2]</label>
-			<label kind="assignment" x="-646" y="76">x:=0,--boten,leegGelopen:=boten==0</label>
+			<label kind="assignment" x="-646" y="76">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0</label>
 			<nail x="-408" y="34"/>
 			<nail x="-442" y="0"/>
 		</transition>
@@ -122,9 +122,9 @@ isGroen[schutkolkId*2]</label>
 			<target ref="id5"/>
 			<label kind="guard" x="110" y="-8">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &gt; 0&amp;&amp;
-!leegGelopen&amp;&amp;
+kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2+1]</label>
-			<label kind="assignment" x="110" y="68">x:=0,--boten,leegGelopen:=boten==0</label>
+			<label kind="assignment" x="110" y="68">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0</label>
 			<nail x="68" y="34"/>
 			<nail x="102" y="0"/>
 		</transition>
@@ -133,7 +133,7 @@ isGroen[schutkolkId*2+1]</label>
 			<target ref="id5"/>
 			<label kind="guard" x="110" y="-161">x&gt;=MIN_RAND_INTERVAL&amp;&amp;
 boten &lt; CAPACITEIT&amp;&amp;
-leegGelopen&amp;&amp;
+!kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2+1]</label>
 			<label kind="assignment" x="110" y="-85">x:=0,boten++</label>
 			<nail x="68" y="-102"/>
@@ -151,11 +151,11 @@ x&gt;=SCHUT_DUUR</label>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id4"/>
-			<label kind="synchronisation" x="-102" y="85">schut[schutkolkId]?</label>
+			<label kind="guard" x="-102" y="85">!kolkVol[schutkolkId]</label>
+			<label kind="synchronisation" x="-102" y="68">schut[schutkolkId]?</label>
 			<label kind="assignment" x="-102" y="8">opschutten:=false,x:=0,
-leegGelopen:=false,
 schutten[schutkolkId]=true,
-leegGelopen=boten==0</label>
+kolkVol[schutkolkId]=boten!=0</label>
 			<nail x="0" y="0"/>
 			<nail x="-102" y="0"/>
 		</transition>
@@ -171,11 +171,11 @@ x&gt;=SCHUT_DUUR</label>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
+			<label kind="guard" x="-340" y="-170">!kolkVol[schutkolkId]</label>
 			<label kind="synchronisation" x="-340" y="-93">schut[schutkolkId]?</label>
-			<label kind="assignment" x="-340" y="-170">opschutten:=true,x:=0,
-leegGelopen:=false,
+			<label kind="assignment" x="-340" y="-153">opschutten:=true,x:=0,
 schutten[schutkolkId]=true,
-leegGelopen=boten==0</label>
+kolkVol[schutkolkId]=boten!=0</label>
 			<nail x="-340" y="-68"/>
 			<nail x="-238" y="-68"/>
 		</transition>
