@@ -7,7 +7,7 @@
 
 const int CYCLE_DUUR = 120;
 
-const int SLUIZEN = 1;
+const int SLUIZEN = 2;
 const int BOOT_INTERVAL = 3;
 
 const int BEW_DUUR = 5;
@@ -30,8 +30,16 @@ bool kolkVol[SLUIZEN];
 bool gaatOpen[SLUIZEN*2];
 
 // Globale timing klok:
-clock y;
-clock z;</declaration>
+clock y[SLUIZEN];
+clock z[SLUIZEN];
+
+// ID fixer:
+int getId(int i) {
+    if (!(i % 2)) {
+        i--;
+    }
+    return i/2;
+}</declaration>
 	<template>
 		<name x="5" y="5">Sluisdeur</name>
 		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
@@ -54,7 +62,7 @@ clock x;</declaration>
 			<target ref="id0"/>
 			<label kind="guard" x="-442" y="-68">x&gt;=BEW_DUUR&amp;&amp;
 !gaatOpen[deurId]</label>
-			<label kind="assignment" x="-442" y="-34">open[deurId]=false,y:=0</label>
+			<label kind="assignment" x="-442" y="-34">open[deurId]=false,y[getId(deurId)]:=0</label>
 			<nail x="-340" y="-68"/>
 			<nail x="-442" y="-68"/>
 		</transition>
@@ -62,7 +70,7 @@ clock x;</declaration>
 			<source ref="id2"/>
 			<target ref="id1"/>
 			<label kind="synchronisation" x="-204" y="-51">deurActie[deurId]?</label>
-			<label kind="assignment" x="-204" y="-68">gaatOpen[deurId]:=false,x:=0,y:=0</label>
+			<label kind="assignment" x="-204" y="-68">gaatOpen[deurId]:=false,x:=0,y[getId(deurId)]:=0</label>
 			<nail x="-102" y="-68"/>
 			<nail x="-204" y="-68"/>
 		</transition>
@@ -72,7 +80,7 @@ clock x;</declaration>
 			<label kind="guard" x="-204" y="-212">x&gt;=BEW_DUUR&amp;&amp;
 gaatOpen[deurId]</label>
 			<label kind="synchronisation" x="-204" y="-177">stoplG[deurId]!</label>
-			<label kind="assignment" x="-204" y="-161">open[deurId]=true,y:=0</label>
+			<label kind="assignment" x="-204" y="-161">open[deurId]=true,y[getId(deurId)]:=0</label>
 			<nail x="-204" y="-136"/>
 			<nail x="-102" y="-136"/>
 		</transition>
@@ -80,7 +88,7 @@ gaatOpen[deurId]</label>
 			<source ref="id0"/>
 			<target ref="id1"/>
 			<label kind="synchronisation" x="-442" y="-161">deurActie[deurId]?</label>
-			<label kind="assignment" x="-442" y="-178">gaatOpen[deurId]:=true,x:=0,y:=0</label>
+			<label kind="assignment" x="-510" y="-178">gaatOpen[deurId]:=true,x:=0,y[getId(deurId)]:=0</label>
 			<nail x="-442" y="-136"/>
 			<nail x="-340" y="-136"/>
 		</transition>
@@ -111,7 +119,7 @@ int invar(int id) {
 }</declaration>
 		<location id="id3" x="-408" y="-34">
 			<name x="-518" y="-51">LinkerNiveau</name>
-			<label kind="invariant" x="-646" y="-51">y&lt;=invar(0)</label>
+			<label kind="invariant" x="-697" y="-51">y[schutkolkId]&lt;=invar(0)</label>
 		</location>
 		<location id="id4" x="-170" y="-34">
 			<name x="-204" y="-85">Schuttende</name>
@@ -119,7 +127,7 @@ int invar(int id) {
 		</location>
 		<location id="id5" x="68" y="-34">
 			<name x="85" y="-51">RechterNiveau</name>
-			<label kind="invariant" x="212" y="-51">y&lt;=invar(1)</label>
+			<label kind="invariant" x="212" y="-51">y[schutkolkId]&lt;=invar(1)</label>
 		</location>
 		<init ref="id3"/>
 		<transition>
@@ -140,7 +148,8 @@ isGroen[schutkolkId*2]</label>
 boten &gt; 0&amp;&amp;
 kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2]</label>
-			<label kind="assignment" x="-646" y="59">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,y:=0,
+			<label kind="assignment" x="-646" y="59">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,
+y[schutkolkId]:=0,
 wegGevaren++</label>
 			<nail x="-408" y="34"/>
 			<nail x="-442" y="0"/>
@@ -152,7 +161,8 @@ wegGevaren++</label>
 boten &gt; 0&amp;&amp;
 kolkVol[schutkolkId]&amp;&amp;
 isGroen[schutkolkId*2+1]</label>
-			<label kind="assignment" x="110" y="68">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,y:=0,
+			<label kind="assignment" x="110" y="68">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,
+y[schutkolkId]:=0,
 wegGevaren++</label>
 			<nail x="68" y="34"/>
 			<nail x="102" y="0"/>
@@ -173,7 +183,8 @@ isGroen[schutkolkId*2+1]</label>
 			<target ref="id3"/>
 			<label kind="guard" x="-340" y="0">!opschutten&amp;&amp;
 x&gt;=SCHUT_DUUR</label>
-			<label kind="assignment" x="-340" y="34">schutten[schutkolkId]=false,y:=0</label>
+			<label kind="assignment" x="-340" y="34">schutten[schutkolkId]=false,
+y[schutkolkId]:=0</label>
 			<nail x="-238" y="0"/>
 			<nail x="-340" y="0"/>
 		</transition>
@@ -192,9 +203,10 @@ wegGevaren=0</label>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="guard" x="-102" y="-127">opschutten&amp;&amp;
+			<label kind="guard" x="-102" y="-144">opschutten&amp;&amp;
 x&gt;=SCHUT_DUUR</label>
-			<label kind="assignment" x="-102" y="-93">schutten[schutkolkId]=false,y:=0</label>
+			<label kind="assignment" x="-102" y="-110">schutten[schutkolkId]=false,
+y[schutkolkId]:=0</label>
 			<nail x="-102" y="-68"/>
 			<nail x="0" y="-68"/>
 		</transition>
@@ -241,25 +253,25 @@ wegGevaren=0</label>
 		<parameter>int[0,SLUIZEN-1] contId</parameter>
 		<location id="id8" x="-9826" y="68">
 			<name x="-9919" y="59">DeurRDicht</name>
-			<label kind="invariant" x="-9800" y="59">z&lt;=BEW_DUUR</label>
+			<label kind="invariant" x="-9800" y="59">z[contId]&lt;=BEW_DUUR</label>
 		</location>
 		<location id="id9" x="-9724" y="170">
 			<name x="-9800" y="178">DeurROpen</name>
 		</location>
 		<location id="id10" x="-9554" y="170">
 			<name x="-9554" y="178">GeschutR</name>
-			<label kind="invariant" x="-9477" y="178">z&lt;=BEW_DUUR+SCHUT_DUUR</label>
+			<label kind="invariant" x="-9477" y="178">z[contId]&lt;=BEW_DUUR+SCHUT_DUUR</label>
 		</location>
 		<location id="id11" x="-9452" y="68">
 			<name x="-9426" y="59">DeurLDicht</name>
-			<label kind="invariant" x="-9571" y="59">z&lt;=BEW_DUUR</label>
+			<label kind="invariant" x="-9613" y="59">z[contId]&lt;=BEW_DUUR</label>
 		</location>
 		<location id="id12" x="-9554" y="-34">
 			<name x="-9554" y="-68">DeurLOpen</name>
 		</location>
 		<location id="id13" x="-9724" y="-34">
 			<name x="-9783" y="-68">GeschutL</name>
-			<label kind="invariant" x="-9996" y="-68">z&lt;=BEW_DUUR+SCHUT_DUUR</label>
+			<label kind="invariant" x="-10038" y="-68">z[contId]&lt;=BEW_DUUR+SCHUT_DUUR</label>
 		</location>
 		<init ref="id13"/>
 		<transition>
@@ -271,11 +283,11 @@ wegGevaren=0</label>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-9945" y="85">z&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
+			<label kind="guard" x="-9945" y="85">z[contId]&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
 open[contId+1]&amp;&amp;
 !kolkVol[contId]</label>
 			<label kind="synchronisation" x="-9945" y="136">deurActie[contId*2+1]!</label>
-			<label kind="assignment" x="-9945" y="153">z:=0</label>
+			<label kind="assignment" x="-9945" y="153">z[contId]:=0</label>
 		</transition>
 		<transition>
 			<source ref="id10"/>
@@ -292,11 +304,11 @@ open[contId+1]&amp;&amp;
 		<transition>
 			<source ref="id12"/>
 			<target ref="id11"/>
-			<label kind="guard" x="-9486" y="-51">z&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
+			<label kind="guard" x="-9486" y="-51">z[contId]&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
 open[contId]&amp;&amp;
 !kolkVol[contId]</label>
 			<label kind="synchronisation" x="-9486" y="0">deurActie[contId*2]!</label>
-			<label kind="assignment" x="-9486" y="17">z:=0</label>
+			<label kind="assignment" x="-9486" y="17">z[contId]:=0</label>
 		</transition>
 		<transition>
 			<source ref="id13"/>
@@ -337,7 +349,7 @@ system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 			<comment>Als het rechterstoplicht op rood staat betekend dat dat de rechter sluisdeur nog niet helemaal open/dicht is, of helemaal dicht is.</comment>
 		</query>
 		<query>
-			<formula>A[] z &lt;= CYCLE_DUUR</formula>
+			<formula>A[] z[0] &lt;= CYCLE_DUUR</formula>
 			<comment>De sluis cycled binnen 50 tijdseeneheden.</comment>
 		</query>
 		<query>
@@ -346,7 +358,7 @@ system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 		</query>
 		<query>
 			<formula>Sluiscontroller(0).GeschutL --&gt; Sluiscontroller(0).DeurRDicht</formula>
-			<comment></comment>
+			<comment>Het ding doet het ook daadwerkelijk. (Hij loopt een rondje.)</comment>
 		</query>
 	</queries>
 </nta>
