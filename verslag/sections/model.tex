@@ -2,4 +2,49 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
+
+Het model is gerepresenteerd als een Kripke structuur. Hiervoor is UPPAAL gebruikt. UPPAAL is een programma dat is gemaakt om modellen te maken en te valideren.
+
+Het meest overzichtelijk is om het model van de sluis op te delen in losse onderdelen. Deze onderdelen kunnen dan gecombineerd worden tot een complete sluis.
+
+
+\subsection{Onderdelen} 
+
+\subsubsection{Sluisdeur}
+In een sluis zijn altijd twee sluisdeuren aanwezig.
+
+Een sluisdeur heeft 3 states: Dicht, Bewegende en Open.
+
+
+\subsubsection{Stoplicht}
+In een sluis zijn altijd twee stoplichten aanwezig, een stoplicht per sluisdeur.
+
+Een stoplicht heeft 2 states: Rood en Groen.
+
+
+\subsubsection{Schutkolk}
+Een schutkolk heeft 3 states: LinkerNiveau, Schuttende en RechterNiveau.
+
+Als het water in de schutkolk op het linker of het rechter niveau is kunnen boten uit en in de schutkolk varen. Het uit- en invaren van boten kan gedaan worden met transities op de states.
+
+Als de schutkolk schuttende is, kunnen er geen boten in- of uitvaren.
+
+
+\subsubsection{Sluiscontroller}
+
+De sluiscontroller heeft 6 states: GeschutL, DeurLOpen, DeurLDicht, GeschutR, DeurROpen en DeurRDicht.
+
+Deze states worden ook op deze volgorde geactiveerd om een cyclus van de sluis uit te voeren. Deze cyclus blijft zich herhalen.
+
+
+
+\subsection{Totaal}
+
+Het model bestaat uit vier verschillende onderdelen: sluisdeur, stoplicht, schutkolk en sluiscontroller. Deze werken samen door transities te synchroniseren. Het stoplicht gaat bijvoorbeeld op groen als de bijbehorende sluisdeur opengaat.
+
+Timing
+
+Het model voor de sluis is modulair. Het aantal boten dat in de sluis wordt toegelaten kan aangepast worden en het is ook mogelijk om meerdere sluizen te maken.
+
+
 \end{document}
