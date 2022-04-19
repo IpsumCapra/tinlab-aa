@@ -1,5 +1,54 @@
 \documentclass[../verslag.tex]{subfiles}
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
+Het  model dat gemaakt is aan de hand van Kripke structuren is op een aantal requirements geverifiërd.
+Hiervoor zijn ctl statements gebruikt.
+Omdat niet alle requirements van de sluis te verifiëren zijn aan de hand van ctl, zijn alleen de requirements die wel te vertalen zijn naar ctl geverifiërd. \\
+De volgende requirements zijn geverifiërd:
+\begin{enumerate}
+    \item Sluisdeuren zijn dicht bij op- en neerschutten.
+    \item Stoplichten staan altijd op rood/groen bij relevante staten van de deur.
+    \item Deuren staan nooit tegelijkertijd open.  
+    \item De sluis cycled binnen x minuten.
+    \item De sluis cycled niet meer dan nodig.
+    \item De sluis werkt op basis van een tijdschema.
+    \item Iedereen mag eerst de sluis uit voordat de sluis weer vol loopt.
+\end{enumerate}
+Dit zijn enige requirements die te vertalen zijn naar ctl. \\
+
+De \textbf{eerste} requirement is als volgt vertaald naar ctl en geverifiërd: \\
+A[ ] Schutkolk(0).Schuttende imply (Sluisdeur(0).Dicht and Sluisdeur(1).Dicht) \\
+
+Het geldt dus altijd dat als de schutkolk aan het schutten is, dan zijn beide sluisdeuren dicht.
+Als deze uitspraak waar is, kan er vast worden gesteld dat de eerste requirement geverifiërd is. \\
+
+De \textbf{tweede} requirement is als volgt vertaald naar ctl en geverifiërd: \\
+A[ ] Sluisdeur(0).Open imply Stoplicht(0).Groen \\
+A[ ] Sluisdeur(1).Open imply Stoplicht(1).Groen \\
+A[ ] Stoplicht(0).Rood imply (Sluisdeur(0).Bewegende or Sluisdeur(0).Dicht) \\
+A[ ] Stoplicht(1).Rood imply (Sluisdeur(1).Bewegende or Sluisdeur(1).Dicht) \\
+
+Het geldt altijd dat zodra een sluisdeur open is, de bijbehorende stoplicht groen is.
+Het geldt altijd dat zodra een stoplicht rood is, de bijbehorende sluisdier bewegend of dicht is.
+Als beide uitspraken waar zijn, kan er vast worden gesteld dat de tweede requirement geverifiërd is. \\
+
+De \textbf{derde} requirement is als volgt vertaald naar ctl en geverifiërd: \\
+A[ ] !(Sluisdeur(0).Open and Sluisdeur(1).Open) \\
+
+Het geldt altijd dat beide sluisdeuren nooit tegelijkertijd open zijn.
+Als deze uitspraak waar is, kan er vast worden gesteld dat de derde requirement geverifiërd is. \\
+
+De \textbf{vierde}, \textbf{vijfde} en \textbf{zesde} requirement is als volgt vertaald naar ctl en geverifiërd: \\
+A[ ] z[0] $<=$ $CYCLE\_DUUR$ \\
+
+Het geldt altijd dat klok $z$ lager of gelijk is aan de $CYCLE\_DUUR$ waar klok $z$ bijhoudt hoelang een cycle bezig is en $CYCLE\_DUUR$ de totale tijd van een cycle is.
+Dit betekent dus ook dat de sluis werkt aan de hand van een tijdschema en niet meer cycled dan nodig is.
+Als deze uitspraak waar is, kan er vast worden gesteld dat de vierde, vijfde en zesde requirement geverifiërd is. \\
+
+De \textbf{zevende} requirement is als volgt vertaald naar ctl en geverifiërd: \\
+kolkVol[0] $-->$ !kolkVol[0] \\
+
+Met deze verificatie verifiëren we de liveness van de boten die in de sluis gaan. Zodra er een boot in de kolk van de sluis komt, zal deze boot altijd eruit komen voordat er nieuwe boten in mogen.
+Als deze uitspraak waar is, kan er vast worden gesteld dat de zevende requirement geverifiërd is. \\
 
 \end{document}
