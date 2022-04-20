@@ -24,7 +24,13 @@
 \contentsline {subsection}{\numberline {6.4}Onderhoudskosten}{12}%
 \contentsline {subsection}{\numberline {6.5}Duurzaamheid}{12}%
 \contentsline {section}{\numberline {7}Model}{12}%
-\contentsline {section}{\numberline {8}Verifiëren}{12}%
-\contentsline {section}{\numberline {9}Conclusie}{12}%
-\contentsline {section}{\numberline {10}Bijlagen}{13}%
-\contentsline {section}{Referenties}{14}%
+\contentsline {subsection}{\numberline {7.1}Onderdelen}{12}%
+\contentsline {subsubsection}{\numberline {7.1.1}Sluiscontroller}{12}%
+\contentsline {subsubsection}{\numberline {7.1.2}Schutkolk}{13}%
+\contentsline {subsubsection}{\numberline {7.1.3}Sluisdeur}{13}%
+\contentsline {subsubsection}{\numberline {7.1.4}Stoplicht}{14}%
+\contentsline {subsection}{\numberline {7.2}Totaal model}{14}%
+\contentsline {section}{\numberline {8}Verifiëren}{15}%
+\contentsline {section}{\numberline {9}Conclusie}{15}%
+\contentsline {section}{\numberline {10}Bijlagen}{16}%
+\contentsline {section}{Referenties}{17}%

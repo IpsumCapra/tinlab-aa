@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.9)  6 APR 2022 13:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.9)  20 APR 2022 16:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -174,7 +174,30 @@ File: images/Sluis_Operatie7.png Graphic file (type png)
 <use images/Sluis_Operatie7.png>
 Package pdftex.def Info: images/Sluis_Operatie7.png  used on input line 70.
 (pdftex.def)             Requested size: 227.62204pt x 128.02927pt.
-) (./sections/onderzoek_onderhoud.tex [9 <./images/Sluis_Operatie6.png> <./images/Sluis_Operatie7.png>]) [10] (./sections/wat_kan_er_fout_gaan_met_een_sluis.tex)) (./sections/requirements.tex [11]) (./sections/model.tex) (./sections/verifieren.tex) (./sections/conclusie.tex) [12] (./sections/bijlagen.tex) [13] (./verslag.bbl
+) (./sections/onderzoek_onderhoud.tex [9 <./images/Sluis_Operatie6.png> <./images/Sluis_Operatie7.png>]) [10] (./sections/wat_kan_er_fout_gaan_met_een_sluis.tex)) (./sections/requirements.tex [11]) (./sections/model.tex
+<sections/../images/model_sluiscontroller.png, id=54, 661.2705pt x 236.082pt>
+File: sections/../images/model_sluiscontroller.png Graphic file (type png)
+<use sections/../images/model_sluiscontroller.png>
+Package pdftex.def Info: sections/../images/model_sluiscontroller.png  used on input line 16.
+(pdftex.def)             Requested size: 345.0pt x 123.1704pt.
+ [12 <./sections/../images/model_sluiscontroller.png>]
+<sections/../images/model_schutkolk.png, id=61, 843.15pt x 251.7405pt>
+File: sections/../images/model_schutkolk.png Graphic file (type png)
+<use sections/../images/model_schutkolk.png>
+Package pdftex.def Info: sections/../images/model_schutkolk.png  used on input line 27.
+(pdftex.def)             Requested size: 345.0pt x 103.00684pt.
+<sections/../images/model_sluisdeur.png, id=62, 493.24275pt x 162.00525pt>
+File: sections/../images/model_sluisdeur.png Graphic file (type png)
+<use sections/../images/model_sluisdeur.png>
+Package pdftex.def Info: sections/../images/model_sluisdeur.png  used on input line 37.
+(pdftex.def)             Requested size: 345.0pt x 113.31883pt.
+ [13 <./sections/../images/model_schutkolk.png>]
+<sections/../images/model_stoplicht.png, id=67, 152.9715pt x 125.268pt>
+File: sections/../images/model_stoplicht.png Graphic file (type png)
+<use sections/../images/model_stoplicht.png>
+Package pdftex.def Info: sections/../images/model_stoplicht.png  used on input line 47.
+(pdftex.def)             Requested size: 152.9711pt x 125.26768pt.
+ [14 <./sections/../images/model_sluisdeur.png> <./sections/../images/model_stoplicht.png>]) (./sections/verifieren.tex) (./sections/conclusie.tex) [15] (./sections/bijlagen.tex) [16] (./verslag.bbl
 Underfull \hbox (badness 7308) in paragraph at lines 42--57
 []\OT1/cmss/m/n/10 Bezuijen, K. G.  (2000).  Con-struc-tieve wa-ter-bouw-kunde. deel b:
  []
@@ -219,7 +242,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 265--277
 \OT1/cmtt/m/n/10 https :// www [] .rijkswaterstaat [] .nl / water / waterbeheer / bescherming []
  []
 
-[14]
+[17]
 Underfull \hbox (badness 1400) in paragraph at lines 389--402
 []\OT1/cmss/m/n/10 Zeilen.  (2013).  \OT1/cmss/m/sl/10 Ver-keers-te-kens bij brug-gen en slui-zen.  \OT1/cmss/m/n/10 Ver-kre-gen van
  []
@@ -229,20 +252,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 389--402
 \OT1/cmtt/m/n/10 https :// www [] .zeilen [] .nl / aan [] -boord / zeemanschap / verkeerstekens []
  []
 
-) [15] (./verslag.aux) ) 
+) [18] (./verslag.aux) ) 
 Here is how much of TeX's memory you used:
- 2546 strings out of 482600
- 36847 string characters out of 5949961
+ 2571 strings out of 482600
+ 37738 string characters out of 5949961
  286407 words of memory out of 5000000
- 17555 multiletter control sequences out of 15000+600000
+ 17575 multiletter control sequences out of 15000+600000
  535902 words of font info for 36 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 30i,5n,37p,798b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,37p,798b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/otacon/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on verslag.pdf (16 pages, 293115 bytes).
+Output written on verslag.pdf (19 pages, 391577 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 115 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
