@@ -4,10 +4,9 @@
 	<declaration>// Place global declarations here.
 
 // Constants:
-
 const int CYCLE_DUUR = 120;
 
-const int SLUIZEN = 2;
+const int SLUIZEN = 1;
 const int BOOT_INTERVAL = 3;
 
 const int BEW_DUUR = 5;
@@ -98,8 +97,15 @@ gaatOpen[deurId]</label>
 		<parameter>int[0,SLUIZEN-1] schutkolkId</parameter>
 		<declaration>// Place local declarations here.
 
-// Doe dit later adhv de CEMT klasse.
-const int CAPACITEIT = 3;
+// Klasse gaat van 0 tot 7, CEMT klasse II tot VIc. Zie ook het verslag.
+const int KLASSE = 0;
+
+// Bereken capaciteit aan de hand van de gegeven CEMT klasse.
+// Om het model niet te ver te compliceren, varen er alleen motor jachten. (15m x 4m)
+// Capaciteit wordt berekend dmv (klasse lengte / 15) * (klasse breedte / 4) (waarden omlaag afgerond.)
+const int CAPACITEITEN[8] = {3, 10, 14, 18, 24, 36, 65, 90};
+
+const int CAPACITEIT = CAPACITEITEN[KLASSE];
 
 int[0,CAPACITEIT] boten;
 
