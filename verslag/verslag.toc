@@ -22,10 +22,10 @@
 \contentsline {subsection}{\numberline {6.2}Efficiëntie}{12}%
 \contentsline {subsection}{\numberline {6.3}Capaciteit}{12}%
 \contentsline {subsection}{\numberline {6.4}Onderhoud}{12}%
-\contentsline {subsection}{\numberline {6.5}Onderhoudskosten}{12}%
-\contentsline {subsection}{\numberline {6.6}Duurzaamheid}{12}%
-\contentsline {section}{\numberline {7}Model}{12}%
-\contentsline {section}{\numberline {8}Verifiëren}{12}%
-\contentsline {section}{\numberline {9}Conclusie}{12}%
-\contentsline {section}{\numberline {10}Bijlagen}{13}%
-\contentsline {section}{Referenties}{14}%
+\contentsline {subsection}{\numberline {6.5}Onderhoudskosten}{13}%
+\contentsline {subsection}{\numberline {6.6}Duurzaamheid}{13}%
+\contentsline {section}{\numberline {7}Model}{13}%
+\contentsline {section}{\numberline {8}Verifiëren}{13}%
+\contentsline {section}{\numberline {9}Conclusie}{13}%
+\contentsline {section}{\numberline {10}Bijlagen}{15}%
+\contentsline {section}{Referenties}{16}%

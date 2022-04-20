@@ -115,11 +115,11 @@ INPUT sections/verifieren.tex
 INPUT sections/verifieren.tex
 INPUT sections/conclusie.tex
 INPUT sections/conclusie.tex
-INPUT sections/bijlagen.tex
-INPUT sections/bijlagen.tex
-INPUT verslag.bbl
-INPUT verslag.bbl
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT sections/bijlagen.tex
+INPUT sections/bijlagen.tex
+INPUT verslag.bbl
+INPUT verslag.bbl
 INPUT verslag.aux
 INPUT /home/otacon/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
