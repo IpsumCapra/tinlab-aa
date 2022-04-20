@@ -1,21 +1,370 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-	<declaration>// Place global declarations here.</declaration>
+	<declaration>// Place global declarations here.
+
+// Constants:
+const int CYCLE_DUUR = 120;
+
+const int SLUIZEN = 1;
+const int BOOT_INTERVAL = 3;
+
+const int BEW_DUUR = 5;
+
+const int SCHUT_DUUR = 15;
+
+int INVAAR_DELAY = CYCLE_DUUR - SCHUT_DUUR - BEW_DUUR;
+
+// Channels:
+broadcast chan deurActie[SLUIZEN*2];
+chan stoplG[SLUIZEN*2];
+chan stoplR[SLUIZEN*2];
+chan schut[SLUIZEN];
+
+// Variables:
+bool open[SLUIZEN*2];
+bool schutten[SLUIZEN];
+bool isGroen[SLUIZEN*2];
+bool kolkVol[SLUIZEN];
+bool gaatOpen[SLUIZEN*2];
+
+// Globale timing klok:
+clock y[SLUIZEN];
+clock z[SLUIZEN];
+
+// ID fixer:
+int getId(int i) {
+    if (!(i % 2)) {
+        i--;
+    }
+    return i/2;
+}</declaration>
 	<template>
-		<name x="5" y="5">Controller</name>
-		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="0" y="0">
+		<name x="5" y="5">Sluisdeur</name>
+		<parameter>int[0,SLUIZEN*2-1] deurId</parameter>
+		<declaration>// Place local declarations here.
+
+clock x;</declaration>
+		<location id="id0" x="-510" y="-102">
+			<name x="-520" y="-136">Dicht</name>
+		</location>
+		<location id="id1" x="-272" y="-102">
+			<name x="-306" y="-153">Bewegende</name>
+			<label kind="invariant" x="-323" y="-76">x&lt;=BEW_DUUR</label>
+		</location>
+		<location id="id2" x="-34" y="-102">
+			<name x="-44" y="-136">Open</name>
 		</location>
 		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-442" y="-68">x&gt;=BEW_DUUR&amp;&amp;
+!gaatOpen[deurId]</label>
+			<label kind="assignment" x="-442" y="-34">open[deurId]=false,y[getId(deurId)]:=0</label>
+			<nail x="-340" y="-68"/>
+			<nail x="-442" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-204" y="-51">deurActie[deurId]?</label>
+			<label kind="assignment" x="-204" y="-68">gaatOpen[deurId]:=false,x:=0,y[getId(deurId)]:=0</label>
+			<nail x="-102" y="-68"/>
+			<nail x="-204" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-204" y="-212">x&gt;=BEW_DUUR&amp;&amp;
+gaatOpen[deurId]</label>
+			<label kind="synchronisation" x="-204" y="-177">stoplG[deurId]!</label>
+			<label kind="assignment" x="-204" y="-161">open[deurId]=true,y[getId(deurId)]:=0</label>
+			<nail x="-204" y="-136"/>
+			<nail x="-102" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-442" y="-161">deurActie[deurId]?</label>
+			<label kind="assignment" x="-510" y="-178">gaatOpen[deurId]:=true,x:=0,y[getId(deurId)]:=0</label>
+			<nail x="-442" y="-136"/>
+			<nail x="-340" y="-136"/>
+		</transition>
+	</template>
+	<template>
+		<name>Schutkolk</name>
+		<parameter>int[0,SLUIZEN-1] schutkolkId</parameter>
+		<declaration>// Place local declarations here.
+
+// Klasse gaat van 0 tot 7, CEMT klasse II tot VIc. Zie ook het verslag.
+const int KLASSE = 0;
+
+// Bereken capaciteit aan de hand van de gegeven CEMT klasse.
+// Om het model niet te ver te compliceren, varen er alleen motor jachten. (15m x 4m)
+// Capaciteit wordt berekend dmv (klasse lengte / 15) * (klasse breedte / 4) (waarden omlaag afgerond.)
+const int CAPACITEITEN[8] = {3, 10, 14, 18, 24, 36, 65, 90};
+
+const int CAPACITEIT = CAPACITEITEN[KLASSE];
+
+int[0,CAPACITEIT] boten;
+
+bool opschutten;
+clock x;
+
+int[0,CAPACITEIT] wegGevaren=0;
+
+int invar(int id) {
+    if (gaatOpen[schutkolkId + id] &amp;&amp; !open[schutkolkId + id]) {
+        return BEW_DUUR;
+    }
+    if (boten &gt; 0 &amp;&amp; kolkVol[schutkolkId]) {
+        return BOOT_INTERVAL;
+    }
+    return INVAAR_DELAY - BEW_DUUR - BOOT_INTERVAL*wegGevaren;
+}</declaration>
+		<location id="id3" x="-408" y="-34">
+			<name x="-518" y="-51">LinkerNiveau</name>
+			<label kind="invariant" x="-697" y="-51">y[schutkolkId]&lt;=invar(0)</label>
+		</location>
+		<location id="id4" x="-170" y="-34">
+			<name x="-204" y="-85">Schuttende</name>
+			<label kind="invariant" x="-221" y="-17">x&lt;=SCHUT_DUUR</label>
+		</location>
+		<location id="id5" x="68" y="-34">
+			<name x="85" y="-51">RechterNiveau</name>
+			<label kind="invariant" x="212" y="-51">y[schutkolkId]&lt;=invar(1)</label>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-646" y="-161">x&gt;=BOOT_INTERVAL&amp;&amp;
+boten &lt; CAPACITEIT&amp;&amp;
+!kolkVol[schutkolkId]&amp;&amp;
+isGroen[schutkolkId*2]</label>
+			<label kind="assignment" x="-646" y="-85">x:=0,boten++</label>
+			<nail x="-408" y="-102"/>
+			<nail x="-442" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-646" y="-17">x&gt;=BOOT_INTERVAL&amp;&amp;
+boten &gt; 0&amp;&amp;
+kolkVol[schutkolkId]&amp;&amp;
+isGroen[schutkolkId*2]</label>
+			<label kind="assignment" x="-646" y="59">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,
+y[schutkolkId]:=0,
+wegGevaren++</label>
+			<nail x="-408" y="34"/>
+			<nail x="-442" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="110" y="-8">x&gt;=BOOT_INTERVAL&amp;&amp;
+boten &gt; 0&amp;&amp;
+kolkVol[schutkolkId]&amp;&amp;
+isGroen[schutkolkId*2+1]</label>
+			<label kind="assignment" x="110" y="68">x:=0,--boten,kolkVol[schutkolkId]:=boten!=0,
+y[schutkolkId]:=0,
+wegGevaren++</label>
+			<nail x="68" y="34"/>
+			<nail x="102" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="110" y="-178">x&gt;=BOOT_INTERVAL&amp;&amp;
+boten &lt; CAPACITEIT&amp;&amp;
+!kolkVol[schutkolkId]&amp;&amp;
+isGroen[schutkolkId*2+1]</label>
+			<label kind="assignment" x="110" y="-102">x:=0,boten++</label>
+			<nail x="68" y="-102"/>
+			<nail x="102" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-340" y="0">!opschutten&amp;&amp;
+x&gt;=SCHUT_DUUR</label>
+			<label kind="assignment" x="-340" y="34">schutten[schutkolkId]=false,
+y[schutkolkId]:=0</label>
+			<nail x="-238" y="0"/>
+			<nail x="-340" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-102" y="102">!kolkVol[schutkolkId]</label>
+			<label kind="synchronisation" x="-102" y="85">schut[schutkolkId]?</label>
+			<label kind="assignment" x="-102" y="8">opschutten:=false,x:=0,
+schutten[schutkolkId]=true,
+kolkVol[schutkolkId]=boten!=0,
+wegGevaren=0</label>
+			<nail x="0" y="0"/>
+			<nail x="-102" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-102" y="-144">opschutten&amp;&amp;
+x&gt;=SCHUT_DUUR</label>
+			<label kind="assignment" x="-102" y="-110">schutten[schutkolkId]=false,
+y[schutkolkId]:=0</label>
+			<nail x="-102" y="-68"/>
+			<nail x="0" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-340" y="-187">!kolkVol[schutkolkId]</label>
+			<label kind="synchronisation" x="-340" y="-93">schut[schutkolkId]?</label>
+			<label kind="assignment" x="-340" y="-170">opschutten:=true,x:=0,
+schutten[schutkolkId]=true,
+kolkVol[schutkolkId]=boten!=0,
+wegGevaren=0</label>
+			<nail x="-340" y="-68"/>
+			<nail x="-238" y="-68"/>
+		</transition>
+	</template>
+	<template>
+		<name>Stoplicht</name>
+		<parameter>int[0,SLUIZEN*2-1] stoplId</parameter>
+		<location id="id6" x="-340" y="-68" color="#ff0000">
+			<name x="-350" y="-102">Rood</name>
+		</location>
+		<location id="id7" x="-204" y="-68" color="#00ff00">
+			<name x="-214" y="-102">Groen</name>
+		</location>
+		<init ref="id6"/>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-323" y="-34">deurActie[stoplId]?</label>
+			<label kind="assignment" x="-323" y="-17">isGroen[stoplId]=false</label>
+			<nail x="-272" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-314" y="-144">stoplG[stoplId]?</label>
+			<label kind="assignment" x="-314" y="-127">isGroen[stoplId]=true</label>
+			<nail x="-272" y="-102"/>
+		</transition>
+	</template>
+	<template>
+		<name>Sluiscontroller</name>
+		<parameter>int[0,SLUIZEN-1] contId</parameter>
+		<location id="id8" x="-9826" y="68">
+			<name x="-9919" y="59">DeurRDicht</name>
+			<label kind="invariant" x="-9800" y="59">z[contId]&lt;=BEW_DUUR</label>
+		</location>
+		<location id="id9" x="-9724" y="170">
+			<name x="-9800" y="178">DeurROpen</name>
+		</location>
+		<location id="id10" x="-9554" y="170">
+			<name x="-9554" y="178">GeschutR</name>
+			<label kind="invariant" x="-9477" y="178">z[contId]&lt;=BEW_DUUR+SCHUT_DUUR</label>
+		</location>
+		<location id="id11" x="-9452" y="68">
+			<name x="-9426" y="59">DeurLDicht</name>
+			<label kind="invariant" x="-9613" y="59">z[contId]&lt;=BEW_DUUR</label>
+		</location>
+		<location id="id12" x="-9554" y="-34">
+			<name x="-9554" y="-68">DeurLOpen</name>
+		</location>
+		<location id="id13" x="-9724" y="-34">
+			<name x="-9783" y="-68">GeschutL</name>
+			<label kind="invariant" x="-10038" y="-68">z[contId]&lt;=BEW_DUUR+SCHUT_DUUR</label>
+		</location>
+		<init ref="id13"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id13"/>
+			<label kind="guard" x="-9860" y="-34">!open[contId+1]</label>
+			<label kind="synchronisation" x="-9860" y="-17">schut[contId]!</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-9945" y="85">z[contId]&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
+open[contId+1]&amp;&amp;
+!kolkVol[contId]</label>
+			<label kind="synchronisation" x="-9945" y="136">deurActie[contId*2+1]!</label>
+			<label kind="assignment" x="-9945" y="153">z[contId]:=0</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-9690" y="178">!schutten[contId]</label>
+			<label kind="synchronisation" x="-9690" y="195">deurActie[contId*2+1]!</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-9486" y="102">!open[contId]</label>
+			<label kind="synchronisation" x="-9486" y="119">schut[contId]!</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id11"/>
+			<label kind="guard" x="-9486" y="-51">z[contId]&gt;=INVAAR_DELAY-BEW_DUUR&amp;&amp;
+open[contId]&amp;&amp;
+!kolkVol[contId]</label>
+			<label kind="synchronisation" x="-9486" y="0">deurActie[contId*2]!</label>
+			<label kind="assignment" x="-9486" y="17">z[contId]:=0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-9690" y="-76">!schutten[contId]</label>
+			<label kind="synchronisation" x="-9690" y="-59">deurActie[contId*2]!</label>
+		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
-system Controller;
-    </system>
+system Sluisdeur, Schutkolk, Stoplicht, Sluiscontroller;</system>
 	<queries>
 		<query>
-			<formula></formula>
-			<comment></comment>
+			<formula>A[] not deadlock</formula>
+			<comment>Het model heeft geen deadlocks.</comment>
+		</query>
+		<query>
+			<formula>A[] Sluisdeur(0).Open imply Stoplicht(0).Groen</formula>
+			<comment>Als de linker deur open staat, staat het stoplicht van deze deur altijd op groen.</comment>
+		</query>
+		<query>
+			<formula>A[] Sluisdeur(1).Open imply Stoplicht(1).Groen</formula>
+			<comment>Als de rechter deur open staat, staat het stoplicht van deze deur altijd op groen.</comment>
+		</query>
+		<query>
+			<formula>A[] !(Sluisdeur(0).Open &amp;&amp; Sluisdeur(1).Open)</formula>
+			<comment>De twee sluisdeuren staan nooit tegelijkertijd open.</comment>
+		</query>
+		<query>
+			<formula>A[] Schutkolk(0).Schuttende imply (Sluisdeur(0).Dicht &amp;&amp; Sluisdeur(1).Dicht)</formula>
+			<comment>Wanneer de sluis aan het schutten is, zijn beide deuren dicht.</comment>
+		</query>
+		<query>
+			<formula>A[] Stoplicht(0).Rood imply (Sluisdeur(0).Bewegende || Sluisdeur(0).Dicht)</formula>
+			<comment>Als het linkerstoplicht op rood staat betekend dat dat de linker sluisdeur nog niet helemaal open/dicht is, of helemaal dicht is.</comment>
+		</query>
+		<query>
+			<formula>A[] Stoplicht(1).Rood imply (Sluisdeur(1).Bewegende || Sluisdeur(1).Dicht)</formula>
+			<comment>Als het rechterstoplicht op rood staat betekend dat dat de rechter sluisdeur nog niet helemaal open/dicht is, of helemaal dicht is.</comment>
+		</query>
+		<query>
+			<formula>A[] z[0] &lt;= CYCLE_DUUR</formula>
+			<comment>De sluis cycled binnen 50 tijdseeneheden.</comment>
+		</query>
+		<query>
+			<formula>kolkVol[0] --&gt; !kolkVol[0]</formula>
+			<comment>Als er een boot de sluis in is gegaan, zal deze de sluis ook altijd verlaten.</comment>
+		</query>
+		<query>
+			<formula>Sluiscontroller(0).GeschutL --&gt; Sluiscontroller(0).DeurRDicht</formula>
+			<comment>Het ding doet het ook daadwerkelijk. (Hij loopt een rondje.)</comment>
 		</query>
 	</queries>
 </nta>
